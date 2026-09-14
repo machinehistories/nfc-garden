@@ -76,7 +76,7 @@ window.WEATHER_GARDEN_CONFIG = {
 };
 ```
 
-The default weather location is New York City. Change `WEATHER_LAT` and
+The default weather location is set by changing `WEATHER_LAT` and
 `WEATHER_LON` in `worker/wrangler.toml` to the installation coordinates, then
 deploy again.
 
@@ -86,29 +86,30 @@ Create a GitHub repository and push this project. In the repository settings,
 open **Pages**, set **Source** to **GitHub Actions**, then run the included
 workflow or push to `main`.
 
-If the published URL is:
-
-```text
-https://YOURNAME.github.io/weather-garden/
-```
 
 the tag URLs are:
 
 ```text
-https://YOURNAME.github.io/weather-garden/?tag=stone
-https://YOURNAME.github.io/weather-garden/?tag=flower
-https://YOURNAME.github.io/weather-garden/?tag=cloud
-https://YOURNAME.github.io/weather-garden/?tag=spiral
-https://YOURNAME.github.io/weather-garden/?tag=sun
-https://YOURNAME.github.io/weather-garden/?tag=moon
-https://YOURNAME.github.io/weather-garden/?tag=rest
-https://YOURNAME.github.io/weather-garden/?tag=lightning
+https://machinehistories.github.io/weather-garden/?tag=stone
+https://machinehistories.github.io/weather-garden/?tag=flower
+https://machinehistories.github.io/weather-garden/?tag=cloud
+https://machinehistories.github.io/weather-garden/?tag=spiral
+https://machinehistories.github.io/weather-garden/?tag=sun
+https://machinehistories.github.io/weather-garden/?tag=moon
+https://machinehistories.github.io/weather-garden/?tag=rest
+https://machinehistories.github.io/weather-garden/?tag=lightning
 ```
 
 Write each URL as a standard URL record using NFC Tools. On iOS, scanning the
 tag presents a notification; tapping it opens the contribution page.
 
 ## API
+
+https://api.open-meteo.com/v1/forecast
+?latitude=40.7128
+&longitude=-74.0060
+&current=temperature_2m,cloud_cover,wind_speed_10m
+&wind_speed_unit=kmh
 
 ### Add a contribution
 
