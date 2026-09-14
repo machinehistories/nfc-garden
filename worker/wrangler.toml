@@ -1,0 +1,15 @@
+name = "weather-garden-api"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "weather-garden"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+INSTALLATION_ID = "weather-garden-01"
+WEATHER_LAT = "40.7128"
+WEATHER_LON = "-74.0060"
+ALLOWED_ORIGIN = "*"
+
