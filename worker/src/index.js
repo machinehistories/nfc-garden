@@ -57,9 +57,16 @@ async function addScan(request, env) {
   const previous = await env.DB.prepare(
     "SELECT note FROM scans WHERE installation = ? AND note IS NOT NULL ORDER BY created_at DESC LIMIT 1"
   ).bind(env.INSTALLATION_ID).first();
+  const tagCount = await env.DB.prepare(
+    "SELECT COUNT(*) AS count FROM scans WHERE installation = ? AND tag = ?"
+  ).bind(env.INSTALLATION_ID, tag).first();
   const temperatureOctave = weather.temperatureC < 5 ? -1 : weather.temperatureC > 27 ? 1 : 0;
   let note = tag === "rest" ? null : scale.root + scale.intervals[rule.degree] + 12 * (rule.octave + temperatureOctave);
   if (tag === "spiral" && previous?.note != null) note = Math.max(36, previous.note - 5);
+  if (note != null && tag !== "spiral") {
+    const variations = [0, 2, 7, 12, 7, 4];
+    note += variations[Number(tagCount?.count || 0) % variations.length];
+  }
   note = note == null ? null : Math.max(24, Math.min(96, note));
   const duration = Math.max(0.09, Math.min(2.4, rule.duration + weather.windKph / 80));
   const event = {
@@ -146,4 +153,3 @@ function json(data, status, headers) {
     headers: { ...headers, "Content-Type": "application/json; charset=utf-8" },
   });
 }
-
